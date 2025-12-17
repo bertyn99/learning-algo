@@ -1,0 +1,105 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+@theme static {
+  --font-sans: 'Public Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Neon Cyan (Primary) */
+  --color-cyan-50: #e0faff;
+  --color-cyan-100: #b3f2ff;
+  --color-cyan-200: #80e9ff;
+  --color-cyan-300: #4ddfff;
+  --color-cyan-400: #1ad6ff;
+  --color-cyan-500: #00d4ff;
+  --color-cyan-600: #00b8e6;
+  --color-cyan-700: #0099bf;
+  --color-cyan-800: #007a99;
+  --color-cyan-900: #005c73;
+  --color-cyan-950: #003d4d;
+
+  /* Neon Magenta (Secondary) */
+  --color-magenta-50: #ffe6f5;
+  --color-magenta-100: #ffb3e0;
+  --color-magenta-200: #ff80cc;
+  --color-magenta-300: #ff4db8;
+  --color-magenta-400: #ff1aa3;
+  --color-magenta-500: #ff009d;
+  --color-magenta-600: #e6008d;
+  --color-magenta-700: #bf0076;
+  --color-magenta-800: #99005e;
+  --color-magenta-900: #730047;
+  --color-magenta-950: #4d002f;
+
+  /* Deep Cyber Neutral */
+  --color-cyber-50: #f2f2f5;
+  --color-cyber-100: #e6e6ec;
+  --color-cyber-200: #cccce0;
+  --color-cyber-300: #b3b3d4;
+  --color-cyber-400: #9999c8;
+  --color-cyber-500: #8080bc;
+  --color-cyber-600: #6666af;
+  --color-cyber-700: #4d4da3;
+  --color-cyber-800: #333397;
+  --color-cyber-900: #1a1a2e; /* The core dark purple/blue */
+  --color-cyber-950: #0d0d17;
+
+  /* Neon Green (Success) */
+  --color-neon-green-500: #39ff14;
+}
+
+:root {
+  --ui-primary: var(--ui-color-cyan-500);
+  --ui-secondary: var(--ui-color-magenta-500);
+  --ui-neutral: var(--ui-color-cyber-900);
+  
+  --ui-radius: 0.5rem;
+  
+  /* Background and Text defaults */
+  --ui-bg: var(--ui-color-cyber-950);
+  --ui-text: var(--ui-color-cyber-100);
+}
+
+.dark {
+  --ui-primary: var(--ui-color-cyan-400);
+  --ui-secondary: var(--ui-color-magenta-400);
+}
+
+/* Nuxt UI Component Overrides */
+:root {
+  --ui-card-bg: var(--ui-color-cyber-900);
+  --ui-card-border: var(--ui-color-cyber-800);
+  
+  --ui-button-font-weight: 600;
+  --ui-button-padding-x: 1.25rem;
+}
+
+/* Custom Neon Glow Utilities */
+.glow-cyan {
+  box-shadow: 0 0 10px var(--ui-color-cyan-500), 0 0 20px var(--ui-color-cyan-800);
+}
+
+.glow-magenta {
+  box-shadow: 0 0 10px var(--ui-color-magenta-500), 0 0 20px var(--ui-color-magenta-800);
+}
+
+.border-neon-cyan {
+  border: 2px solid var(--ui-color-cyan-500);
+  box-shadow: inset 0 0 5px var(--ui-color-cyan-500), 0 0 10px var(--ui-color-cyan-500);
+}
+
+.border-neon-magenta {
+  border: 2px solid var(--ui-color-magenta-500);
+  box-shadow: inset 0 0 5px var(--ui-color-magenta-500), 0 0 10px var(--ui-color-magenta-500);
+}
+
+body {
+  @apply antialiased text-default bg-default selection:bg-primary selection:text-inverted;
+  background-image: 
+    linear-gradient(rgba(13, 13, 23, 0.85), rgba(13, 13, 23, 0.85)),
+    url('/background_neon_circuit.webp');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}

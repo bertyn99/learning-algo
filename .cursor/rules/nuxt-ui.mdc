@@ -1,0 +1,67 @@
+---
+name: nuxt-ui
+description: Best practices for using and upgrading Nuxt UI
+globs: app/components/**, app/components/**, app/**
+---
+# nuxt-ui.mdc
+
+Purpose
+- Provide conventions for building UI components, using Nuxt UI, and upgrading/styling components.
+
+Component structure
+- Keep components small and focused; prefer props and events for communication.
+- Use `app/components/ui/` for shared primitives and `app/components/` for page-specific components.
+
+Styling
+- Use Tailwind & utility classes when possible. Keep Tailwind classes in templates, not inlined styles.
+- Support theming via CSS variables and a `useTheme` composable.
+
+Accessibility
+- Ensure components support ARIA attributes and keyboard interactions.
+- Provide accessible labels and roles for interactive elements.
+
+Upgrading Nuxt UI
+- When upgrading, run visual regression tests and linting (tailwindcss, eslint) to catch breaking style changes.
+- Replace deprecated primitives with new equivalents and add migration notes in the rule.
+
+Documentation
+- Each shared UI component must have a short README with props, events, and examples.
+
+MCP (Model Context Protocol) integration
+- The Nuxt UI MCP server provides structured component, composable, example, and template data that AI assistants can query.
+- Configure the project MCP client for common tools by adding `.cursor/mcp.json`, `.vscode/mcp.json`, or other tool-specific configs pointing to `https://ui.nuxt.com/mcp`.
+
+Using MCP in Development
+- Use MCP to discover component implementations and metadata when authoring or reviewing components.
+- When creating or updating UI components, confirm the MCP metadata (props, slots, events) matches the local component README.
+- Use MCP `list_components` and `get_component_metadata` to validate prop types, default values, and available slots.
+
+Component selection and migration
+- Use the MCP `find_component_for_usecase` prompt to locate the best built-in component for a UI pattern before implementing a custom component.
+- Use `get_migration_guide` to check version-specific migration steps when upgrading Nuxt UI.
+
+Example workflows
+- Discover component by category:
+```
+// Query the MCP server for a component list in the 'form' category
+const components = await mcp.nuxtUi.list_components({ category: 'form' })
+```
+- Retrieve detailed metadata for a specific component:
+```
+const metadata = await mcp.nuxtUi.get_component_metadata({ name: 'UButton' })
+// Verify props and slots before usage
+```
+- Fetch usage example and adapt it into local component README:
+```
+const example = await mcp.nuxtUi.get_example({ id: 'contact-form' })
+```
+
+Available Prompts
+
+The Nuxt UI MCP server provides guided prompts for common workflows:
+
+find_component_for_usecase: Find the best component for your specific use case
+implement_component_with_props: Generate complete component implementation with proper props
+setup_project_with_template: Get guided setup instructions for project templates
+You're able to access these resources with tools like Claude Code by using /.
+
