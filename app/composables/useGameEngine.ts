@@ -21,6 +21,7 @@ export const useGameEngine = () => {
         execute: execution.execute,
         stop: execution.stop,
         isExecuting: execution.isExecuting,
+        executeCommand: execution.executeCommand,
 
         // Level management
         ...levelManager,

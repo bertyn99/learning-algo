@@ -3,21 +3,32 @@ import { useGameStore } from '~/stores/game'
 export const useGrid = () => {
     const store = useGameStore()
 
+    const getTileAt = (x: number, y: number) => {
+        const level = store.currentLevel
+        if (!level) return null
+        return level.layout.find(t => t.x === x && t.y === y)
+    }
+
     /**
-     * Checks if a position is within the grid bounds and is a walkable tile (ground or goal)
+     * Checks if a position is within the grid bounds and is a walkable tile
      */
     const isValidPosition = (x: number, y: number): boolean => {
-        const level = store.currentLevel
-        if (!level) return false
+        const tile = getTileAt(x, y)
+        if (!tile || tile.type === 'void') return false
 
-        if (x < 0 || x >= level.gridSize || y < 0 || y >= level.gridSize) {
-            return false
+        // Handle Doors
+        if (tile.type === 'door' && tile.id) {
+            const isOpen = store.interactiveState[tile.id]
+            if (!isOpen) return false
         }
 
-        const index = y * level.gridSize + x
-        const cellType = level.layout[index]
-        // 0: empty, 1: ground, 2: goal
-        return cellType === 1 || cellType === 2
+        // Handle Cracked Tiles
+        if (tile.type === 'cracked' && tile.id) {
+            const isSafe = store.interactiveState[tile.id]
+            if (isSafe === false) return false
+        }
+
+        return true
     }
 
     /**
@@ -30,8 +41,8 @@ export const useGrid = () => {
     }
 
     return {
+        getTileAt,
         isValidPosition,
         isGoal
     }
 }
-

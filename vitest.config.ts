@@ -20,6 +20,7 @@ export default defineConfig({
     resolve: {
         alias: {
             '~': resolve(__dirname, './app'),
+            '~~': resolve(__dirname, '.'),
         },
     },
 })

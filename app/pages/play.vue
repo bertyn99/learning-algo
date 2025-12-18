@@ -75,13 +75,13 @@ useHead({
       <!-- Right: Control Center -->
       <aside class="flex-1 flex flex-col border-l border-cyber-800 bg-cyber-950/40 backdrop-blur-md min-h-0">
         <!-- Scrollable content area -->
-        <div class="flex-1 flex flex-col min-h-0 p-4 gap-4 overflow-y-auto custom-scrollbar">
+        <div class="flex-1 flex flex-col min-h-0 p-3 gap-3 overflow-y-auto custom-scrollbar">
           <!-- Level Description Card -->
           <GameControls />
 
           <!-- Editor Zone -->
           <div
-            class="flex-1 flex flex-col min-h-[400px] lg:min-h-0 border-2 border-neon-magenta rounded-2xl bg-cyber-900/60 p-4 shadow-[0_0_30px_rgba(255,0,157,0.1)]">
+            class="flex-1 flex flex-col min-h-[300px] lg:min-h-0 border-2 border-neon-magenta rounded-2xl bg-cyber-900/60 p-3 shadow-[0_0_20px_rgba(255,0,157,0.1)]">
             <GameEditor />
           </div>
         </div>

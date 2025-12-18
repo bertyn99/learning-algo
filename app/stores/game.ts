@@ -1,21 +1,24 @@
 import { defineStore } from 'pinia'
-import type { Level, Robot, Command, GameStatus, Position } from '~/types/game'
+import type { Level, Robot, Command, BlockType, ProgramBlock, GameStatus, Position } from '~/types/game'
 import levelsData from '~/data/levels.json'
 
 export const useGameStore = defineStore('game', {
     state: () => ({
-        levels: levelsData as Level[],
+        // Deep clone levelsData to avoid cross-test contamination and ensure fresh levels
+        levels: JSON.parse(JSON.stringify(levelsData)) as Level[],
         currentLevelId: 1,
         robot: {
             x: 0,
             y: 0,
             dir: 'N' as const
         } as Robot,
-        program: [] as Command[],
+        program: [] as ProgramBlock[],
         status: 'IDLE' as GameStatus,
         litGoals: [] as Position[],
         executionSpeed: 500,
-        currentCommandIndex: -1
+        currentCommandIndex: -1,
+        activeAction: null as Command | null,
+        interactiveState: {} as Record<string, boolean>
     }),
 
     getters: {
@@ -38,7 +41,17 @@ export const useGameStore = defineStore('game', {
         },
 
         programLength(state): number {
-            return state.program.length
+            const countBlocks = (blocks: ProgramBlock[]): number => {
+                let count = 0
+                for (const block of blocks) {
+                    count++
+                    if (block.children) {
+                        count += countBlocks(block.children)
+                    }
+                }
+                return count
+            }
+            return countBlocks(state.program)
         },
 
         hasNextLevel(state): boolean {
@@ -48,6 +61,9 @@ export const useGameStore = defineStore('game', {
 
     actions: {
         loadLevel(levelId: number) {
+            // When loading a level, we should ideally also reset its layout to the original if it was modified
+            // but for now, since we deep clone levelsData on state creation and recreate Pinia in beforeEach, 
+            // it should be fine.
             const level = this.levels.find(l => l.id === levelId)
             if (!level) return
 
@@ -57,6 +73,7 @@ export const useGameStore = defineStore('game', {
             this.status = 'IDLE'
             this.litGoals = []
             this.currentCommandIndex = -1
+            this.initInteractiveState()
         },
 
         nextLevel() {
@@ -65,21 +82,59 @@ export const useGameStore = defineStore('game', {
             }
         },
 
-        setProgram(commands: Command[]) {
-            this.program = [...commands]
-        },
-
-        addCommand(command: Command) {
+        initInteractiveState() {
             const level = this.currentLevel
             if (!level) return
 
-            if (this.program.length < level.maxCommands) {
-                this.program.push(command)
+            const initialState: Record<string, boolean> = {}
+            level.layout.forEach(tile => {
+                if (tile.id && tile.state !== undefined) {
+                    initialState[tile.id] = tile.state
+                }
+            })
+            this.interactiveState = initialState
+        },
+
+        setInteractiveState(id: string, state: boolean) {
+            this.interactiveState[id] = state
+        },
+
+        setProgram(blocks: ProgramBlock[]) {
+            this.program = [...blocks]
+        },
+
+        addCommand(command: Command | BlockType) {
+            const level = this.currentLevel
+            if (!level) return
+
+            if (this.programLength < level.maxCommands) {
+                const block: ProgramBlock = {
+                    id: Math.random().toString(36).substring(2, 9),
+                    type: ['LOOP', 'IF_COLOR'].includes(command) ? (command as BlockType) : 'COMMAND',
+                    command: !['LOOP', 'IF_COLOR'].includes(command) ? (command as Command) : undefined,
+                    children: ['LOOP', 'IF_COLOR'].includes(command) ? [] : undefined,
+                    iterations: command === 'LOOP' ? 2 : undefined,
+                    conditionColor: command === 'IF_COLOR' ? 'red' : undefined
+                }
+                this.program.push(block)
             }
         },
 
-        removeCommand(index: number) {
-            this.program.splice(index, 1)
+        removeCommand(id: string) {
+            const removeRecursive = (blocks: ProgramBlock[]): boolean => {
+                const index = blocks.findIndex(b => b.id === id)
+                if (index !== -1) {
+                    blocks.splice(index, 1)
+                    return true
+                }
+                for (const block of blocks) {
+                    if (block.children && removeRecursive(block.children)) {
+                        return true
+                    }
+                }
+                return false
+            }
+            removeRecursive(this.program)
         },
 
         clearProgram() {
@@ -94,12 +149,16 @@ export const useGameStore = defineStore('game', {
             this.currentCommandIndex = index
         },
 
+        setActiveAction(action: Command | null) {
+            this.activeAction = action
+        },
+
         moveRobot(x: number, y: number) {
             this.robot.x = x
             this.robot.y = y
         },
 
-        turnRobot(direction: 'N' | 'E' | 'S' | 'W') {
+        turnRobot(direction: Direction) {
             this.robot.dir = direction
         },
 
@@ -128,6 +187,7 @@ export const useGameStore = defineStore('game', {
             this.status = 'IDLE'
             this.litGoals = []
             this.currentCommandIndex = -1
+            this.initInteractiveState()
         },
 
         resetPosition() {
@@ -137,6 +197,7 @@ export const useGameStore = defineStore('game', {
             this.robot = { ...level.start }
             this.litGoals = []
             this.currentCommandIndex = -1
+            this.initInteractiveState()
         },
 
         setSpeed(speed: number) {
@@ -144,4 +205,3 @@ export const useGameStore = defineStore('game', {
         }
     }
 })
-

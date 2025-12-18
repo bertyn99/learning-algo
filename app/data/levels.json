@@ -1,35 +1,160 @@
 [
     {
         "id": 1,
-        "title": "Premier Pas",
-        "description": "Avance simplement jusqu'à la case bleue et allume-la !",
+        "title": "Bienvenue en 3D Maze!",
+        "description": "Avance et allume la lumière. Attention à la marche !",
         "gridSize": 5,
         "layout": [
-            1,
-            1,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
+            {
+                "x": 0,
+                "y": 0,
+                "type": "ground",
+                "height": 0
+            },
+            {
+                "x": 1,
+                "y": 0,
+                "type": "ground",
+                "height": 0
+            },
+            {
+                "x": 2,
+                "y": 0,
+                "type": "ground",
+                "height": 0
+            },
+            {
+                "x": 3,
+                "y": 0,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 4,
+                "y": 0,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 0,
+                "y": 1,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 1,
+                "y": 1,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 2,
+                "y": 1,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 3,
+                "y": 1,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 4,
+                "y": 1,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 0,
+                "y": 2,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 1,
+                "y": 2,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 2,
+                "y": 2,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 3,
+                "y": 2,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 4,
+                "y": 2,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 0,
+                "y": 3,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 1,
+                "y": 3,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 2,
+                "y": 3,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 3,
+                "y": 3,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 4,
+                "y": 3,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 0,
+                "y": 4,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 1,
+                "y": 4,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 2,
+                "y": 4,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 3,
+                "y": 4,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 4,
+                "y": 4,
+                "type": "void",
+                "height": 0
+            }
         ],
         "start": {
             "x": 0,
@@ -50,241 +175,504 @@
     },
     {
         "id": 2,
-        "title": "Tourner à Droite",
-        "description": "Avance, tourne à droite, puis avance encore pour atteindre ton but.",
+        "title": "Le Grand Saut",
+        "description": "Utilise JUMP pour franchir les obstacles de hauteur différente.",
         "gridSize": 5,
         "layout": [
-            1,
-            1,
-            0,
-            0,
-            0,
-            0,
-            1,
-            0,
-            0,
-            0,
-            0,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-        ],
-        "start": {
-            "x": 0,
-            "y": 0,
-            "dir": "E"
-        },
-        "goals": [
-            {
-                "x": 1,
-                "y": 2
-            }
-        ],
-        "availableBlocks": [
-            "MOVE",
-            "TURN_R",
-            "LIGHT"
-        ],
-        "maxCommands": 6
-    },
-    {
-        "id": 3,
-        "title": "Le Virage",
-        "description": "Combine les virages et les mouvements pour tracer ton chemin.",
-        "gridSize": 5,
-        "layout": [
-            1,
-            1,
-            1,
-            0,
-            0,
-            0,
-            0,
-            1,
-            0,
-            0,
-            0,
-            0,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-        ],
-        "start": {
-            "x": 0,
-            "y": 0,
-            "dir": "E"
-        },
-        "goals": [
-            {
-                "x": 2,
-                "y": 2
-            }
-        ],
-        "availableBlocks": [
-            "MOVE",
-            "TURN_R",
-            "LIGHT"
-        ],
-        "maxCommands": 7
-    },
-    {
-        "id": 4,
-        "title": "Tourner à Gauche",
-        "description": "Maintenant tu peux aussi tourner à gauche !",
-        "gridSize": 5,
-        "layout": [
-            0,
-            0,
-            1,
-            0,
-            0,
-            0,
-            0,
-            1,
-            0,
-            0,
-            1,
-            1,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-        ],
-        "start": {
-            "x": 2,
-            "y": 2,
-            "dir": "N"
-        },
-        "goals": [
             {
                 "x": 0,
-                "y": 2
-            }
-        ],
-        "availableBlocks": [
-            "MOVE",
-            "TURN_L",
-            "TURN_R",
-            "LIGHT"
-        ],
-        "maxCommands": 6
-    },
-    {
-        "id": 5,
-        "title": "Le Carré",
-        "description": "Allume deux cases sur ce parcours carré.",
-        "gridSize": 5,
-        "layout": [
-            1,
-            1,
-            1,
-            0,
-            0,
-            1,
-            0,
-            1,
-            0,
-            0,
-            1,
-            1,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-        ],
-        "start": {
-            "x": 0,
-            "y": 0,
-            "dir": "E"
-        },
-        "goals": [
+                "y": 0,
+                "type": "ground",
+                "height": 0
+            },
+            {
+                "x": 1,
+                "y": 0,
+                "type": "ground",
+                "height": 1
+            },
             {
                 "x": 2,
-                "y": 0
+                "y": 0,
+                "type": "ground",
+                "height": 2
+            },
+            {
+                "x": 3,
+                "y": 0,
+                "type": "ground",
+                "height": 1
+            },
+            {
+                "x": 4,
+                "y": 0,
+                "type": "ground",
+                "height": 0
             },
             {
                 "x": 0,
-                "y": 2
+                "y": 1,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 1,
+                "y": 1,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 2,
+                "y": 1,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 3,
+                "y": 1,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 4,
+                "y": 1,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 0,
+                "y": 2,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 1,
+                "y": 2,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 2,
+                "y": 2,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 3,
+                "y": 2,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 4,
+                "y": 2,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 0,
+                "y": 3,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 1,
+                "y": 3,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 2,
+                "y": 3,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 3,
+                "y": 3,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 4,
+                "y": 3,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 0,
+                "y": 4,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 1,
+                "y": 4,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 2,
+                "y": 4,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 3,
+                "y": 4,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 4,
+                "y": 4,
+                "type": "void",
+                "height": 0
+            }
+        ],
+        "start": {
+            "x": 0,
+            "y": 0,
+            "dir": "E"
+        },
+        "goals": [
+            {
+                "x": 4,
+                "y": 0
             }
         ],
         "availableBlocks": [
             "MOVE",
-            "TURN_L",
-            "TURN_R",
+            "JUMP",
             "LIGHT"
         ],
-        "maxCommands": 12
+        "maxCommands": 10
     },
     {
-        "id": 6,
-        "title": "Le Labyrinthe",
-        "description": "Trouve ton chemin dans ce petit labyrinthe !",
+        "id": 3,
+        "title": "Couleurs et Conditions",
+        "description": "Saute seulement si la case est rouge !",
         "gridSize": 5,
         "layout": [
-            1,
-            1,
-            0,
-            1,
-            1,
-            0,
-            1,
-            0,
-            1,
-            0,
-            0,
-            1,
-            1,
-            1,
-            0,
-            0,
-            0,
-            0,
-            1,
-            0,
-            0,
-            0,
-            0,
-            1,
-            0
+            {
+                "x": 0,
+                "y": 0,
+                "type": "ground",
+                "height": 0,
+                "color": "red"
+            },
+            {
+                "x": 1,
+                "y": 0,
+                "type": "ground",
+                "height": 1
+            },
+            {
+                "x": 2,
+                "y": 0,
+                "type": "ground",
+                "height": 1,
+                "color": "red"
+            },
+            {
+                "x": 3,
+                "y": 0,
+                "type": "ground",
+                "height": 2
+            },
+            {
+                "x": 4,
+                "y": 0,
+                "type": "ground",
+                "height": 2
+            },
+            {
+                "x": 0,
+                "y": 1,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 1,
+                "y": 1,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 2,
+                "y": 1,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 3,
+                "y": 1,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 4,
+                "y": 1,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 0,
+                "y": 2,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 1,
+                "y": 2,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 2,
+                "y": 2,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 3,
+                "y": 2,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 4,
+                "y": 2,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 0,
+                "y": 3,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 1,
+                "y": 3,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 2,
+                "y": 3,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 3,
+                "y": 3,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 4,
+                "y": 3,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 0,
+                "y": 4,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 1,
+                "y": 4,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 2,
+                "y": 4,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 3,
+                "y": 4,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 4,
+                "y": 4,
+                "type": "void",
+                "height": 0
+            }
+        ],
+        "start": {
+            "x": 0,
+            "y": 0,
+            "dir": "E"
+        },
+        "goals": [
+            {
+                "x": 4,
+                "y": 0
+            }
+        ],
+        "availableBlocks": [
+            "MOVE",
+            "JUMP",
+            "IF_COLOR",
+            "LIGHT"
+        ],
+        "maxCommands": 8
+    },
+    {
+        "id": 4,
+        "title": "Interactivité",
+        "description": "Marche sur l'interrupteur pour ouvrir la porte.",
+        "gridSize": 5,
+        "layout": [
+            {
+                "x": 0,
+                "y": 0,
+                "type": "ground",
+                "height": 0
+            },
+            {
+                "x": 0,
+                "y": 1,
+                "type": "switch",
+                "height": 0,
+                "targetId": "door1"
+            },
+            {
+                "x": 0,
+                "y": 2,
+                "type": "ground",
+                "height": 0
+            },
+            {
+                "x": 1,
+                "y": 2,
+                "type": "door",
+                "height": 0,
+                "id": "door1",
+                "state": false
+            },
+            {
+                "x": 2,
+                "y": 2,
+                "type": "ground",
+                "height": 0
+            },
+            {
+                "x": 1,
+                "y": 0,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 2,
+                "y": 0,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 3,
+                "y": 0,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 4,
+                "y": 0,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 1,
+                "y": 1,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 2,
+                "y": 1,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 3,
+                "y": 1,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 4,
+                "y": 1,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 0,
+                "y": 3,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 1,
+                "y": 3,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 2,
+                "y": 3,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 3,
+                "y": 3,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 4,
+                "y": 3,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 0,
+                "y": 4,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 1,
+                "y": 4,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 2,
+                "y": 4,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 3,
+                "y": 4,
+                "type": "void",
+                "height": 0
+            },
+            {
+                "x": 4,
+                "y": 4,
+                "type": "void",
+                "height": 0
+            }
         ],
         "start": {
             "x": 0,
@@ -293,183 +681,6 @@
         },
         "goals": [
             {
-                "x": 3,
-                "y": 4
-            }
-        ],
-        "availableBlocks": [
-            "MOVE",
-            "TURN_L",
-            "TURN_R",
-            "LIGHT"
-        ],
-        "maxCommands": 14
-    },
-    {
-        "id": 7,
-        "title": "Double Objectif",
-        "description": "Allume les deux lumières avec un seul programme !",
-        "gridSize": 5,
-        "layout": [
-            1,
-            1,
-            1,
-            1,
-            1,
-            0,
-            0,
-            0,
-            0,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            0,
-            0,
-            0,
-            0,
-            1,
-            1,
-            1,
-            1,
-            1
-        ],
-        "start": {
-            "x": 0,
-            "y": 0,
-            "dir": "E"
-        },
-        "goals": [
-            {
-                "x": 4,
-                "y": 0
-            },
-            {
-                "x": 0,
-                "y": 4
-            }
-        ],
-        "availableBlocks": [
-            "MOVE",
-            "TURN_L",
-            "TURN_R",
-            "LIGHT"
-        ],
-        "maxCommands": 18
-    },
-    {
-        "id": 8,
-        "title": "Le Zigzag",
-        "description": "Suis le chemin en zigzag et allume toutes les lumières.",
-        "gridSize": 5,
-        "layout": [
-            1,
-            1,
-            1,
-            0,
-            0,
-            0,
-            0,
-            1,
-            0,
-            0,
-            0,
-            1,
-            1,
-            1,
-            0,
-            0,
-            1,
-            0,
-            0,
-            0,
-            1,
-            1,
-            0,
-            0,
-            0
-        ],
-        "start": {
-            "x": 0,
-            "y": 0,
-            "dir": "E"
-        },
-        "goals": [
-            {
-                "x": 2,
-                "y": 0
-            },
-            {
-                "x": 1,
-                "y": 2
-            },
-            {
-                "x": 0,
-                "y": 4
-            }
-        ],
-        "availableBlocks": [
-            "MOVE",
-            "TURN_L",
-            "TURN_R",
-            "LIGHT"
-        ],
-        "maxCommands": 16
-    },
-    {
-        "id": 9,
-        "title": "La Spirale",
-        "description": "Trace une spirale et allume les 4 coins !",
-        "gridSize": 5,
-        "layout": [
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            0,
-            0,
-            0,
-            1,
-            1,
-            0,
-            1,
-            0,
-            1,
-            1,
-            0,
-            0,
-            0,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1
-        ],
-        "start": {
-            "x": 0,
-            "y": 0,
-            "dir": "E"
-        },
-        "goals": [
-            {
-                "x": 4,
-                "y": 0
-            },
-            {
-                "x": 4,
-                "y": 4
-            },
-            {
-                "x": 0,
-                "y": 4
-            },
-            {
                 "x": 2,
                 "y": 2
             }
@@ -480,73 +691,6 @@
             "TURN_R",
             "LIGHT"
         ],
-        "maxCommands": 24
-    },
-    {
-        "id": 10,
-        "title": "Le Grand Défi",
-        "description": "Le niveau final ! Allume toutes les lumières dans cet ordre précis.",
-        "gridSize": 5,
-        "layout": [
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            0,
-            1,
-            0,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            0,
-            1,
-            0,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1
-        ],
-        "start": {
-            "x": 2,
-            "y": 2,
-            "dir": "N"
-        },
-        "goals": [
-            {
-                "x": 2,
-                "y": 0
-            },
-            {
-                "x": 4,
-                "y": 2
-            },
-            {
-                "x": 2,
-                "y": 4
-            },
-            {
-                "x": 0,
-                "y": 2
-            },
-            {
-                "x": 2,
-                "y": 2
-            }
-        ],
-        "availableBlocks": [
-            "MOVE",
-            "TURN_L",
-            "TURN_R",
-            "LIGHT"
-        ],
-        "maxCommands": 28
+        "maxCommands": 10
     }
 ]

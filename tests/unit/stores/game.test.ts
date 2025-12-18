@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { setActivePinia, createPinia } from 'pinia'
 import { useGameStore } from '~/stores/game'
-import type { Command } from '~/types/game'
+import type { Command, ProgramBlock } from '~/types/game'
 
 describe('Game Store', () => {
     beforeEach(() => {
@@ -34,7 +34,8 @@ describe('Game Store', () => {
             store.addCommand('MOVE')
 
             expect(store.program.length).toBe(1)
-            expect(store.program[0]).toBe('MOVE')
+            expect(store.program[0].type).toBe('COMMAND')
+            expect(store.program[0].command).toBe('MOVE')
         })
 
         it('should not add command if limit reached', () => {
@@ -55,22 +56,26 @@ describe('Game Store', () => {
             }
         })
 
-        it('should remove a command by index', () => {
+        it('should remove a command by id', () => {
             const store = useGameStore()
             store.loadLevel(1)
             store.addCommand('MOVE')
             store.addCommand('TURN_L')
             store.addCommand('LIGHT')
 
+            const idToRemove = store.program[1].id
             expect(store.program.length).toBe(3)
-            store.removeCommand(1)
+            store.removeCommand(idToRemove)
             expect(store.program.length).toBe(2)
-            expect(store.program[1]).toBe('LIGHT')
+            expect(store.program[1].command).toBe('LIGHT')
         })
 
         it('should set program', () => {
             const store = useGameStore()
-            const newProgram: Command[] = ['MOVE', 'TURN_L', 'LIGHT']
+            const newProgram: ProgramBlock[] = [
+                { id: '1', type: 'COMMAND', command: 'MOVE' },
+                { id: '2', type: 'COMMAND', command: 'LIGHT' }
+            ]
             store.setProgram(newProgram)
 
             expect(store.program).toEqual(newProgram)
@@ -187,7 +192,7 @@ describe('Game Store', () => {
             const level = store.currentLevel
 
             if (level) {
-                store.moveRobot(5, 5)
+                store.moveRobot(1, 1)
                 store.setStatus('RUNNING')
                 store.resetPosition()
 
@@ -201,7 +206,7 @@ describe('Game Store', () => {
             store.loadLevel(1)
             const level = store.currentLevel
 
-            store.moveRobot(5, 5)
+            store.moveRobot(1, 1)
             store.addCommand('MOVE')
             store.setStatus('RUNNING')
             store.litGoals = [{ x: 2, y: 0 }]
@@ -301,4 +306,3 @@ describe('Game Store', () => {
         })
     })
 })
-
