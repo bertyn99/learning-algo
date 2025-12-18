@@ -106,45 +106,43 @@ const addBlock = (command: Command) => {
         class="flex-1 min-h-[250px] p-4 bg-cyber-950/60 border-2 border-cyan-500/30 rounded-2xl overflow-y-auto custom-scrollbar relative">
         <VueDraggable v-model="program" :animation="200" handle=".drag-handle" @add="onAdd"
           class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 gap-4">
-          <template #item="{ element, index }">
-            <div :key="`cmd-${index}`"
-              class="flex flex-col items-center justify-center p-4 bg-linear-to-br from-cyber-800 to-cyber-900 border-2 rounded-xl shadow-2xl hover:scale-[1.08] active:scale-95 transition-all cursor-move group relative min-h-[100px]"
-              :class="[
-                commandConfig[element as Command].neon,
-                store.currentCommandIndex === index ? 'glow-box-cyan scale-110 z-10 border-white ring-2 ring-cyan-400' : 'border-cyber-700 hover:border-current'
-              ]">
-              <!-- Index marker -->
-              <div class="absolute top-1 left-2 font-mono text-[8px] text-cyber-500 font-bold">{{ index + 1 }}</div>
+          <!-- Command blocks -->
+          <div v-for="(command, index) in program" :key="`cmd-${index}`"
+            class="flex flex-col items-center justify-center p-4 bg-linear-to-br from-cyber-800 to-cyber-900 border-2 rounded-xl shadow-2xl hover:scale-[1.08] active:scale-95 transition-all cursor-move group relative min-h-[100px]"
+            :class="[
+              commandConfig[command as Command].neon,
+              store.currentCommandIndex === index ? 'glow-box-cyan scale-110 z-10 border-white ring-2 ring-cyan-400' : 'border-cyber-700 hover:border-current'
+            ]">
+            <!-- Index marker -->
+            <div class="absolute top-1 left-2 font-mono text-[8px] text-cyber-500 font-bold">{{ index + 1 }}</div>
 
-              <div
-                class="absolute top-1 right-1 drag-handle cursor-grab active:cursor-grabbing text-cyber-700 hover:text-cyber-400 p-1">
-                <UIcon name="i-ph-dots-six-vertical-bold" class="w-3 h-3" />
-              </div>
-
-              <UIcon :name="commandConfig[element as Command].icon" class="w-8 h-8 text-white mb-2" />
-              <span
-                class="font-mono font-black uppercase text-[10px] tracking-tighter text-cyber-300 group-hover:text-white">{{
-                  commandConfig[element as Command].label }}</span>
-
-              <!-- Close button on hover -->
-              <button @click.stop="removeBlock(index)"
-                class="absolute -top-2 -right-2 w-5 h-5 bg-error text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-lg">
-                <UIcon name="i-ph-x-bold" class="w-3 h-3" />
-              </button>
+            <div
+              class="absolute top-1 right-1 drag-handle cursor-grab active:cursor-grabbing text-cyber-700 hover:text-cyber-400 p-1">
+              <UIcon name="i-ph-dots-six-vertical-bold" class="w-3 h-3" />
             </div>
-          </template>
 
-          <template #footer>
-            <div v-if="program.length === 0"
-              class="col-span-full flex flex-col items-center justify-center py-12 text-cyber-500">
-              <div class="relative mb-4">
-                <div class="absolute inset-0 bg-magenta-500/10 blur-xl rounded-full animate-pulse"></div>
-                <UIcon name="i-ph-code-block-duotone" class="w-16 h-16 relative z-10 opacity-20" />
-              </div>
-              <p class="text-[10px] font-mono uppercase tracking-[0.2em] text-center italic opacity-40 px-6">En attente
-                d'instructions... Glisse des blocs ici.</p>
+            <UIcon :name="commandConfig[command as Command].icon" class="w-8 h-8 text-white mb-2" />
+            <span
+              class="font-mono font-black uppercase text-[10px] tracking-tighter text-cyber-300 group-hover:text-white">{{
+                commandConfig[command as Command].label }}</span>
+
+            <!-- Close button on hover -->
+            <button @click.stop="removeBlock(index)"
+              class="absolute -top-2 -right-2 w-5 h-5 bg-error text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-lg">
+              <UIcon name="i-ph-x-bold" class="w-3 h-3" />
+            </button>
+          </div>
+
+          <!-- Empty state -->
+          <div v-if="program.length === 0"
+            class="col-span-full flex flex-col items-center justify-center py-12 text-cyber-500">
+            <div class="relative mb-4">
+              <div class="absolute inset-0 bg-magenta-500/10 blur-xl rounded-full animate-pulse"></div>
+              <UIcon name="i-ph-code-block-duotone" class="w-16 h-16 relative z-10 opacity-20" />
             </div>
-          </template>
+            <p class="text-[10px] font-mono uppercase tracking-[0.2em] text-center italic opacity-40 px-6">En attente
+              d'instructions... Glisse des blocs ici.</p>
+          </div>
         </VueDraggable>
       </div>
     </div>
