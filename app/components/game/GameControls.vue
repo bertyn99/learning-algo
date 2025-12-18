@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useGameStore } from '~/stores/game'
+import { useGameEngine } from '~/composables/useGameEngine'
+
 const store = useGameStore()
 const engine = useGameEngine()
 

@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { VueDraggable } from 'vue-draggable-plus'
 import type { SortableEvent } from 'sortablejs'
+import { computed, ref, watch } from 'vue'
 import type { Command } from '~/types/game'
+import { useGameStore } from '~/stores/game'
 
 const store = useGameStore()
 

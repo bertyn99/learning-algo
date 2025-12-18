@@ -15,7 +15,7 @@ const createWrapper = () => {
         global: {
             plugins: [pinia],
             stubs: {
-                VueDraggable: true,
+                VueDraggable: { template: '<div><slot></slot></div>' },
                 UIcon: true,
             },
             mocks: {
@@ -40,7 +40,7 @@ describe('GameEditor Component', () => {
 
         it('should show empty state when no commands', () => {
             const { wrapper } = createWrapper()
-            expect(wrapper.text()).toContain('Ajoute des blocs')
+            expect(wrapper.text()).toContain('Ajoute des blocs pour commencer')
         })
     })
 

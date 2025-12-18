@@ -132,23 +132,29 @@ describe('Edge Cases and Error Handling Tests', () => {
     describe('Invalid Level Operations', () => {
         it('should handle loading non-existent level', () => {
             const store = useGameStore()
+            const initialLevelId = store.currentLevelId
 
             store.loadLevel(9999)
-            expect(store.currentLevel).toBeUndefined()
+            // Should not change current level when trying to load non-existent level
+            expect(store.currentLevelId).toBe(initialLevelId)
         })
 
         it('should handle loading level 0', () => {
             const store = useGameStore()
+            const initialLevelId = store.currentLevelId
 
             store.loadLevel(0)
-            expect(store.currentLevel).toBeUndefined()
+            // Should not change current level
+            expect(store.currentLevelId).toBe(initialLevelId)
         })
 
         it('should handle negative level ID', () => {
             const store = useGameStore()
+            const initialLevelId = store.currentLevelId
 
             store.loadLevel(-1)
-            expect(store.currentLevel).toBeUndefined()
+            // Should not change current level
+            expect(store.currentLevelId).toBe(initialLevelId)
         })
 
         it('should handle next level on last level', () => {

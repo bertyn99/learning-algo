@@ -19,6 +19,7 @@ describe('Game Store', () => {
 
         it('should have correct initial robot position', () => {
             const store = useGameStore()
+            store.loadLevel(1)
             const level = store.currentLevel
             if (level) {
                 expect(store.robot).toEqual(level.start)

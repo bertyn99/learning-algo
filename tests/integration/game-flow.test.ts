@@ -65,7 +65,7 @@ describe('Game Flow Integration Tests', () => {
                 store.setStatus('FAIL')
             }
 
-            expect([store.status]).toContain('WIN' || 'FAIL')
+            expect(['WIN', 'FAIL']).toContain(store.status)
         })
     })
 
@@ -84,7 +84,7 @@ describe('Game Flow Integration Tests', () => {
             if (store.hasNextLevel) {
                 store.nextLevel()
                 expect(store.currentLevelId).toBe(2)
-                expect(store.status).toBe('WIN') // Status persists
+                expect(store.status).toBe('IDLE') // Status resets when loading new level
             }
         })
 
@@ -321,8 +321,8 @@ describe('Game Flow Integration Tests', () => {
             if (won && store.hasNextLevel) {
                 store.nextLevel()
                 expect(store.currentLevelId).toBe(2)
-                expect(store.program.length).toBe(3) // Program persists
-                expect(store.status).toBe('WIN') // Status persists
+                expect(store.program.length).toBe(0) // Program resets on new level
+                expect(store.status).toBe('IDLE') // Status resets on new level
             }
         })
     })

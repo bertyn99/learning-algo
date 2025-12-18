@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import type { CellType } from '~/types/game'
+import { useGameStore } from '~/stores/game'
 
 const store = useGameStore()
 
