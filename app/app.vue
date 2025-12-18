@@ -1,4 +1,6 @@
 <script setup>
+const route = useRoute()
+
 useHead({
   meta: [
     { name: 'viewport', content: 'width=device-width, initial-scale=1' }
@@ -21,11 +23,14 @@ useSeoMeta({
   ogDescription: description,
   twitterCard: 'summary_large_image'
 })
+
+// Hide header/footer on play page for fullscreen game layout
+const isPlayPage = computed(() => route.path === '/play')
 </script>
 
 <template>
   <UApp>
-    <UHeader class="border-b border-cyber-800 bg-cyber-950/80 backdrop-blur-md">
+    <UHeader v-if="!isPlayPage" class="border-b border-cyber-800 bg-cyber-950/80 backdrop-blur-md">
       <template #left>
         <NuxtLink to="/" class="logo-link group">
           <AppLogo class="transition-transform duration-300 group-hover:scale-105" />
@@ -50,9 +55,9 @@ useSeoMeta({
       <NuxtPage />
     </UMain>
 
-    <USeparator icon="i-ph-robot" class="text-cyber-800" />
+    <USeparator v-if="!isPlayPage" icon="i-ph-robot" class="text-cyber-800" />
 
-    <UFooter class="border-t border-cyber-800 bg-cyber-950/80 backdrop-blur-md">
+    <UFooter v-if="!isPlayPage" class="border-t border-cyber-800 bg-cyber-950/80 backdrop-blur-md">
       <template #left>
         <p class="text-sm text-cyber-400 font-mono">
           LogicBot • Apprends la programmation en t'amusant • © {{ new Date().getFullYear() }}

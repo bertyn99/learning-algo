@@ -14,44 +14,40 @@ useHead({
 </script>
 
 <template>
-  <div class="game-page min-h-screen bg-[#050505] flex flex-col overflow-hidden select-none">
+  <div class="game-page h-screen w-screen bg-[#050505] flex flex-col overflow-hidden select-none">
     <!-- Animated Background (consistent with landing) -->
     <div class="fixed inset-0 pointer-events-none z-0 opacity-20">
       <div class="absolute inset-0 bg-[url('/background_neon_circuit.webp')] bg-cover bg-center mix-blend-screen"></div>
     </div>
 
-    <!-- Immersive Header -->
-    <header
-      class="relative z-20 h-16 flex items-center justify-between px-6 bg-cyber-950/80 backdrop-blur-md border-b border-cyber-800 shadow-lg">
-      <div class="flex items-center gap-6">
+    <!-- Compact Top Bar -->
+    <div class="relative z-20 h-12 flex items-center justify-between px-4 bg-cyber-950/90 backdrop-blur-md border-b border-cyber-800/50">
+      <div class="flex items-center gap-3">
         <NuxtLink to="/"
-          class="group flex items-center gap-2 text-cyber-400 hover:text-primary transition-colors font-black uppercase tracking-widest text-xs">
-          <UIcon name="i-ph-caret-left-bold" class="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-          <span>Quitter</span>
+          class="group flex items-center gap-1 text-cyber-400 hover:text-primary transition-colors font-black uppercase tracking-widest text-xs">
+          <UIcon name="i-ph-caret-left-bold" class="w-3 h-3 group-hover:-translate-x-0.5 transition-transform" />
+          <span>QUITTER</span>
         </NuxtLink>
-        <div class="h-6 w-px bg-cyber-800"></div>
       </div>
 
-      <div class="absolute left-1/2 -translate-x-1/2 flex items-center gap-4">
-        <UIcon name="i-ph-robot-fill" class="text-primary w-6 h-6 glow-cyan animate-pulse" />
-        <h1 class="text-2xl font-black tracking-[0.2em] text-white uppercase italic">
+      <div class="flex items-center gap-2">
+        <UIcon name="i-ph-robot-fill" class="text-primary w-5 h-5 glow-cyan animate-pulse" />
+        <h1 class="text-lg font-black tracking-[0.15em] text-white uppercase italic">
           NIVEAU <span class="text-magenta-500">{{ store.currentLevelId }}</span>
         </h1>
       </div>
 
-      <div class="flex items-center gap-4">
-        <UButton icon="i-ph-arrow-clockwise-bold" variant="ghost" color="neutral" size="sm" @click="store.reset()"
-          class="font-black uppercase tracking-widest text-xs hover:text-magenta-500">
-          RESET
-        </UButton>
-      </div>
-    </header>
+      <UButton icon="i-ph-arrow-clockwise-bold" variant="ghost" color="neutral" size="xs" @click="store.reset()"
+        class="font-black uppercase tracking-widest text-xs hover:text-magenta-500">
+        RESET
+      </UButton>
+    </div>
 
-    <!-- Main Game Layout -->
+    <!-- Main Game Layout - Full Screen -->
     <main class="relative z-10 flex-1 flex flex-col lg:flex-row min-h-0 overflow-hidden">
       <!-- Left: Viewport Area (The 3D Grid) -->
-      <section class="flex-[1.2] flex items-center justify-center p-6 lg:p-12 min-h-0">
-        <div class="w-full max-w-[700px] aspect-square relative group">
+      <section class="flex-[1.2] flex items-center justify-center p-4 lg:p-8 min-h-0">
+        <div class="w-full h-full max-w-[700px] aspect-square relative group">
           <!-- Ambient Glow around the grid -->
           <div
             class="absolute -inset-4 bg-primary/5 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-1000">
@@ -73,21 +69,18 @@ useHead({
       <!-- Right: Control Center -->
       <aside class="flex-1 flex flex-col border-l border-cyber-800 bg-cyber-950/40 backdrop-blur-md min-h-0">
         <!-- Scrollable content area -->
-        <div class="flex-1 flex flex-col min-h-0 p-6 gap-6 overflow-y-auto custom-scrollbar">
+        <div class="flex-1 flex flex-col min-h-0 p-4 gap-4 overflow-y-auto custom-scrollbar">
           <!-- Level Description Card -->
           <GameControls />
 
           <!-- Editor Zone -->
           <div
-            class="flex-1 flex flex-col min-h-[500px] lg:min-h-0 border-2 border-neon-magenta rounded-2xl bg-cyber-900/60 p-5 shadow-[0_0_30px_rgba(255,0,157,0.1)]">
+            class="flex-1 flex flex-col min-h-[400px] lg:min-h-0 border-2 border-neon-magenta rounded-2xl bg-cyber-900/60 p-4 shadow-[0_0_30px_rgba(255,0,157,0.1)]">
             <GameEditor />
           </div>
         </div>
       </aside>
     </main>
-
-    <!-- Bottom status bar decoration -->
-    <footer class="h-2 bg-linear-to-r from-transparent via-primary/20 to-transparent"></footer>
   </div>
 </template>
 
