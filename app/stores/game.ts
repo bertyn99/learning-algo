@@ -130,6 +130,15 @@ export const useGameStore = defineStore('game', {
             this.currentCommandIndex = -1
         },
 
+        resetPosition() {
+            const level = this.currentLevel
+            if (!level) return
+
+            this.robot = { ...level.start }
+            this.litGoals = []
+            this.currentCommandIndex = -1
+        },
+
         setSpeed(speed: number) {
             this.executionSpeed = speed
         }

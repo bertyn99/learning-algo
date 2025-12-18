@@ -4,7 +4,7 @@ export const useGameEngine = () => {
     const store = useGameStore()
     const toast = useToast()
 
-    let isExecuting = false
+    const isExecuting = ref(false)
     let shouldStop = false
 
     // Mapping des directions
@@ -55,16 +55,22 @@ export const useGameEngine = () => {
 
     // Exécute une commande
     const executeCommand = async (command: Command): Promise<boolean> => {
+        console.log(`⚡ Executing command: ${command}`)
+
         switch (command) {
             case 'MOVE': {
                 const delta = getDirectionDelta(store.robot.dir)
                 const newX = store.robot.x + delta.dx
                 const newY = store.robot.y + delta.dy
 
+                console.log(`🚶 Moving from (${store.robot.x}, ${store.robot.y}) to (${newX}, ${newY})`)
+
                 if (isValidPosition(newX, newY)) {
                     store.moveRobot(newX, newY)
+                    console.log(`✅ Move successful! New position: (${newX}, ${newY})`)
                     return true
                 } else {
+                    console.log(`❌ Move failed! Invalid position: (${newX}, ${newY})`)
                     // Le robot essaie de sortir ou d'aller sur une case vide
                     toast.add({
                         title: 'Oups !',
@@ -78,18 +84,22 @@ export const useGameEngine = () => {
 
             case 'TURN_L': {
                 const newDir = turnLeft(store.robot.dir)
+                console.log(`↶ Turning left from ${store.robot.dir} to ${newDir}`)
                 store.turnRobot(newDir)
                 return true
             }
 
             case 'TURN_R': {
                 const newDir = turnRight(store.robot.dir)
+                console.log(`↷ Turning right from ${store.robot.dir} to ${newDir}`)
                 store.turnRobot(newDir)
                 return true
             }
 
             case 'LIGHT': {
+                console.log(`💡 Lighting cell at (${store.robot.x}, ${store.robot.y})`)
                 store.lightCell()
+                console.log(`🎯 Lit goals:`, store.litGoals)
                 return true
             }
 
@@ -100,7 +110,11 @@ export const useGameEngine = () => {
 
     // Lance l'exécution du programme
     const execute = async () => {
-        if (isExecuting) return
+        console.log('🚀 Starting program execution')
+        console.log('📋 Program:', store.program)
+        console.log('🤖 Robot position:', store.robot)
+
+        if (isExecuting.value) return
         if (store.program.length === 0) {
             toast.add({
                 title: 'Programme vide',
@@ -111,10 +125,19 @@ export const useGameEngine = () => {
             return
         }
 
-        isExecuting = true
+        isExecuting.value = true
         shouldStop = false
         store.setStatus('RUNNING')
-        store.reset() // Reset position mais garde le programme
+        // Only reset position, not the status or program
+        const level = store.currentLevel
+        if (level) {
+            console.log('🎯 Level goals:', level.goals)
+            console.log('📍 Starting position:', level.start)
+            store.moveRobot(level.start.x, level.start.y)
+            store.turnRobot(level.start.dir)
+            store.litGoals = []
+            store.currentCommandIndex = -1
+        }
 
         // Exécute chaque commande
         for (let i = 0; i < store.program.length; i++) {
@@ -129,7 +152,7 @@ export const useGameEngine = () => {
             if (!success) {
                 store.setStatus('FAIL')
                 store.setCurrentCommandIndex(-1)
-                isExecuting = false
+                isExecuting.value = false
                 return
             }
 
@@ -139,6 +162,11 @@ export const useGameEngine = () => {
         store.setCurrentCommandIndex(-1)
 
         // Vérifie la victoire
+        console.log('🏁 Checking win condition...')
+        console.log('🎯 Goals to light:', level?.goals)
+        console.log('💡 Lit goals:', store.litGoals)
+        console.log('✅ Is win?', store.isWin)
+
         if (store.isWin) {
             store.setStatus('WIN')
 
@@ -161,13 +189,13 @@ export const useGameEngine = () => {
             })
         }
 
-        isExecuting = false
+        isExecuting.value = false
     }
 
     // Arrête l'exécution
     const stop = () => {
         shouldStop = true
-        isExecuting = false
+        isExecuting.value = false
         store.reset()
     }
 
@@ -180,7 +208,7 @@ export const useGameEngine = () => {
         execute,
         stop,
         setSpeed,
-        isExecuting: computed(() => isExecuting)
+        isExecuting
     }
 }
 

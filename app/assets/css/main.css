@@ -41,7 +41,8 @@
   --color-cyber-600: #6666af;
   --color-cyber-700: #4d4da3;
   --color-cyber-800: #333397;
-  --color-cyber-900: #1a1a2e; /* The core dark purple/blue */
+  --color-cyber-900: #1a1a2e;
+  /* The core dark purple/blue */
   --color-cyber-950: #0d0d17;
 
   /* Neon Green (Success) */
@@ -52,9 +53,9 @@
   --ui-primary: var(--ui-color-cyan-500);
   --ui-secondary: var(--ui-color-magenta-500);
   --ui-neutral: var(--ui-color-cyber-900);
-  
+
   --ui-radius: 0.5rem;
-  
+
   /* Background and Text defaults */
   --ui-bg: var(--ui-color-cyber-950);
   --ui-text: var(--ui-color-cyber-100);
@@ -69,33 +70,56 @@
 :root {
   --ui-card-bg: var(--ui-color-cyber-900);
   --ui-card-border: var(--ui-color-cyber-800);
-  
+
   --ui-button-font-weight: 600;
   --ui-button-padding-x: 1.25rem;
 }
 
 /* Custom Neon Glow Utilities */
 .glow-cyan {
-  box-shadow: 0 0 10px var(--ui-color-cyan-500), 0 0 20px var(--ui-color-cyan-800);
+  text-shadow: 0 0 10px var(--color-cyan-500), 0 0 20px var(--color-cyan-500);
 }
 
 .glow-magenta {
-  box-shadow: 0 0 10px var(--ui-color-magenta-500), 0 0 20px var(--ui-color-magenta-800);
+  text-shadow: 0 0 10px var(--color-magenta-500), 0 0 20px var(--color-magenta-500);
+}
+
+.glow-box-cyan {
+  box-shadow: 0 0 15px var(--color-cyan-500), 0 0 30px var(--color-cyan-800);
+}
+
+.glow-box-magenta {
+  box-shadow: 0 0 15px var(--color-magenta-500), 0 0 30px var(--color-magenta-800);
 }
 
 .border-neon-cyan {
-  border: 2px solid var(--ui-color-cyan-500);
-  box-shadow: inset 0 0 5px var(--ui-color-cyan-500), 0 0 10px var(--ui-color-cyan-500);
+  border: 2px solid var(--color-cyan-500);
+  box-shadow: inset 0 0 10px var(--color-cyan-500), 0 0 20px var(--color-cyan-500);
 }
 
 .border-neon-magenta {
-  border: 2px solid var(--ui-color-magenta-500);
-  box-shadow: inset 0 0 5px var(--ui-color-magenta-500), 0 0 10px var(--ui-color-magenta-500);
+  border: 2px solid var(--color-magenta-500);
+  box-shadow: inset 0 0 10px var(--color-magenta-500), 0 0 20px var(--color-magenta-500);
+}
+
+.text-stroke-cyan {
+  -webkit-text-stroke: 1px var(--color-cyan-500);
+  color: transparent;
+}
+
+.text-neon-cyan {
+  color: var(--color-cyan-500);
+  filter: drop-shadow(0 0 8px var(--color-cyan-500));
+}
+
+.text-neon-magenta {
+  color: var(--color-magenta-500);
+  filter: drop-shadow(0 0 8px var(--color-magenta-500));
 }
 
 body {
   @apply antialiased text-default bg-default selection:bg-primary selection:text-inverted;
-  background-image: 
+  background-image:
     linear-gradient(rgba(13, 13, 23, 0.85), rgba(13, 13, 23, 0.85)),
     url('/background_neon_circuit.webp');
   background-size: cover;

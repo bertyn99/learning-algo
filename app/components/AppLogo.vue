@@ -17,12 +17,12 @@
 .logo-icon {
   width: 32px;
   height: 32px;
-  color: var(--ui-primary);
-  filter: drop-shadow(0 0 5px var(--ui-primary));
+  color: var(--color-cyan-500);
+  filter: drop-shadow(0 0 5px var(--color-cyan-500));
 }
 
 .logo-text {
-  background: linear-gradient(135deg, var(--ui-primary), var(--ui-secondary));
+  background: linear-gradient(135deg, var(--color-cyan-500), var(--color-magenta-500));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
