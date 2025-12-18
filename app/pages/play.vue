@@ -21,7 +21,8 @@ useHead({
     </div>
 
     <!-- Compact Top Bar -->
-    <div class="relative z-20 h-12 flex items-center justify-between px-4 bg-cyber-950/90 backdrop-blur-md border-b border-cyber-800/50">
+    <div
+      class="relative z-20 h-12 flex items-center justify-between px-4 bg-cyber-950/90 backdrop-blur-md border-b border-cyber-800/50">
       <div class="flex items-center gap-3">
         <NuxtLink to="/"
           class="group flex items-center gap-1 text-cyber-400 hover:text-primary transition-colors font-black uppercase tracking-widest text-xs">

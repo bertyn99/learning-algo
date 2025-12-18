@@ -38,13 +38,7 @@ const isPlayPage = computed(() => route.path === '/play')
       </template>
 
       <template #right>
-        <UButton
-          to="/play"
-          icon="i-ph-play-fill"
-          color="primary"
-          variant="solid"
-          class="glow-cyan font-bold"
-        >
+        <UButton to="/play" icon="i-ph-play-fill" color="primary" variant="solid" class="glow-cyan font-bold">
           Jouer
         </UButton>
         <UColorModeButton />
@@ -65,13 +59,8 @@ const isPlayPage = computed(() => route.path === '/play')
       </template>
 
       <template #right>
-        <UButton
-          to="/play"
-          icon="i-ph-play-bold"
-          color="secondary"
-          variant="ghost"
-          class="hover:glow-magenta font-bold transition-all"
-        >
+        <UButton to="/play" icon="i-ph-play-bold" color="secondary" variant="ghost"
+          class="hover:glow-magenta font-bold transition-all">
           Jouer maintenant
         </UButton>
       </template>
