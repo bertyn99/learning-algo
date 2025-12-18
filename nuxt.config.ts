@@ -17,6 +17,10 @@ export default defineNuxtConfig({
     }
   },
 
+  alias: {
+    '@game': './app/composables/game'
+  },
+
   css: ['~/assets/css/main.css'],
 
   routeRules: {

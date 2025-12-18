@@ -1,11 +1,12 @@
 <script setup lang="ts">
 const store = useGameStore()
+const engine = useGameEngine()
 const route = useRoute()
 
 // Charge le niveau au montage
 onMounted(() => {
   const levelId = route.query.level ? Number(route.query.level) : 1
-  store.loadLevel(levelId)
+  engine.loadLevel(levelId)
 })
 
 useHead({
@@ -62,7 +63,11 @@ useHead({
             <div class="absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2 border-primary/40 rounded-bl-lg"></div>
             <div class="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-primary/40 rounded-br-lg"></div>
 
-            <GameViewport />
+            <GameViewport
+              :level="store.currentLevel"
+              :robot="store.robot"
+              :lit-goals="store.litGoals"
+            />
           </div>
         </div>
       </section>
